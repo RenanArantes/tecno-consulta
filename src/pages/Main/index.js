@@ -1,84 +1,74 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { FaSearch, FaSpinner } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import jsonpAdapter from 'axios-jsonp';
 
 import api from '../../services/api';
 
-import logo from '../../assets/logo.png';
-
+import Header from '../../components/Header';
 import Container from '../../components/Container';
 import { Content, Form, SubmitButton } from './styles';
 
-export default class Main extends Component {
-  state = {
-    cnpj:'',
-    newCnpj: '',
-    finded: true,
-    loading: false,
+export default function Main({ history }) {
+
+  const [cnpj, setCnpj] = useState('');
+  const [newCnpj, setNewCnpj] = useState('');
+  const [finded, setFinded] = useState(true);
+  const [loading, setLoading] = useState(false)
+
+  function handleInputChange(e) {
+      setNewCnpj(e.target.value)
   }
 
-  handleInputChange= e => {
-    if(e.target.value === ".") {
-      console.log(!!e.target.value === ".")
-      this.setState({ newCnpj: 'a'});
-    } else {
-      this.setState({ newCnpj: e.target.value})
-    }
-  }
-
-  handleSubmit = async e => {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    this.setState({loading: true, finded: false})
+    setLoading(true);
+    setFinded(false);
 
     try {
-      const { newCnpj } = this.state;
-
       if(newCnpj === '') throw 'Voce precisa digitar um CNPJ';
 
-      const response = await api.get(`/${newCnpj}`);
+      const response = await api.get(`https://www.receitaws.com.br/v1/cnpj/${newCnpj}`, {
+        adapter: jsonpAdapter
+      });
 
-      this.setState = {
-        newCnpj: '',
-        cnpj: response.data
-      }
+      console.log(response.data)
+
+      setNewCnpj('');
+      setCnpj(response.data);
+      setLoading(false);
+
+      history.push({
+        pathname: "/query",
+        data: response.data,
+      });
     } catch(error) {
-      this.setState({finded: true});
-    } finally {
-      this.setState({loading: false});
+      setLoading(false);
     }
-
   }
 
-  render() {
-    const { newCnpj, loading, finded } = this.state;
-
-    return(
-      <>
-        <div>
-          <h1>
-            Tecnodata
-          </h1>
-        </div>
-        <Container>
-          <Form finded={finded}>
-            <input
-              type="number"
-              placeholder="Digite aqui o numero do CNPJ"
-              pattern="[0-9]"
-              max="14"
-              value={newCnpj}
-              onChange={this.handleInputChange}
-            />
-            <SubmitButton loading={loading}>
-              { loading ?
-                <FaSpinner color="#fff" size={25}/> :
-                <FaSearch color="#fff" size={25}/>
-              }
-            </SubmitButton>
-          </Form>
-        </Container>
-      </>
-    )
-  }
+  return(
+    <>
+      <Header />
+      <Container>
+        <h1>CNPJ</h1>
+        <Form onSubmit={handleSubmit} finded={finded}>
+          <input
+          type="number"
+          placeholder="Digite aqui o numero do CNPJ"
+          pattern="[0-9]"
+          value={newCnpj}
+          onChange={handleInputChange}
+          />
+          <SubmitButton loading={loading}>
+            { loading ?
+              <FaSpinner color="#fff" size={25}/> :
+              <FaSearch color="#fff" size={25}/>
+            }
+          </SubmitButton>
+        </Form>
+      </Container>
+    </>
+  )
 }
