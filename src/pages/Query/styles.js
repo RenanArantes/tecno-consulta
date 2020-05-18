@@ -21,5 +21,9 @@ export const TableHeader = styled.tbody`
     width: 60px;
     height: 60px;
   }
-
 `;
+
+export const Title = styled.h1`
+
+`
+

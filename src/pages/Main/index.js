@@ -3,7 +3,7 @@ import { FaSearch, FaSpinner } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import jsonpAdapter from 'axios-jsonp';
 
-import api from '../../services/api';
+import apiRF from '../../services/apiRF';
 
 import Header from '../../components/Header';
 import Container from '../../components/Container';
@@ -29,7 +29,7 @@ export default function Main({ history }) {
     try {
       if(newCnpj === '') throw 'Voce precisa digitar um CNPJ';
 
-      const response = await api.get(`https://www.receitaws.com.br/v1/cnpj/${newCnpj}`, {
+      const response = await apiRF.get(`https://www.receitaws.com.br/v1/cnpj/${newCnpj}`, {
         adapter: jsonpAdapter
       });
 
