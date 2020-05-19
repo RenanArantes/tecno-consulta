@@ -13,7 +13,7 @@ export default function Header() {
         <img alt="Tecnodata" src={logo}/>
         <div>
           <h1>Tecnodata</h1>
-          <h2>Consulta Receita federal</h2>
+          <h2>Consulta Receita Federal</h2>
       </div>
       </Container>
     </Link>
