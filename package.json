@@ -1,4 +1,5 @@
 {
+  "home": "http://renanarantes.github.io/tecno-consulta",
   "name": "tecno-consulta",
   "version": "0.1.0",
   "private": true,
@@ -19,12 +20,12 @@
     "styled-components": "^5.1.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
