@@ -8,8 +8,8 @@ export default function Routes() {
   return(
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={Main}/>
-        <Route path="/query" component={Query}/>
+        <Route path="/tecno-consulta" exact component={Main}/>
+        <Route path="/tecno-consulta/query" component={Query}/>
       </Switch>
     </BrowserRouter>
   );

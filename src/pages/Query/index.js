@@ -50,11 +50,11 @@ export default function Query(props) {
             <h1>Atividades</h1>
             <hr/>
             <Field>
-              {data.atividade_principal.map(element =>
+              {data.atividade_principal ? data.atividade_principal.map(element =>
                 <Field>
                   Atividade Principal: <Value>{element.code}</Value> - <Value>{element.text}</Value>
                 </Field>
-              )}
+              ) : null}
             </Field>
             <br/>
             <Field>
@@ -114,7 +114,7 @@ export default function Query(props) {
             <hr/>
             <Field>
             <ol>
-              {data.qsa.map(element => {
+              {data.qsa ? data.qsa.map(element => {
                 return (
                   <li>
                     <Value>{element.qual}</Value> - <Value>{element.nome}</Value>
@@ -132,7 +132,7 @@ export default function Query(props) {
                     }
                   </li>
                 )
-              })}
+              }) : null}
             </ol>
             </Field>
             <br/>

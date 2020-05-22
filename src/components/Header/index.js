@@ -8,7 +8,7 @@ import { Container } from './styles';
 export default function Header() {
 
   return(
-    <Link to="/" style={{ textDecoration: 'none' }}>
+    <Link to="/tecno-consulta/" style={{ textDecoration: 'none' }}>
       <Container>
         <img alt="Tecnodata" src={logo}/>
         <div>
