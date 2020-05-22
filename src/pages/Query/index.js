@@ -19,8 +19,6 @@ export default function Query(props) {
     }
   }, [props.history.location.data])
 
-  console.log(props)
-
   return(
     <>
       <Header />
