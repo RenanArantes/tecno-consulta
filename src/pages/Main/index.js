@@ -40,7 +40,7 @@ export default function Main({ history }) {
       setLoading(false);
 
       history.push({
-        pathname: "/tecno-consulta/query",
+        pathname: "/query",
         data: response.data,
       });
     } catch(error) {

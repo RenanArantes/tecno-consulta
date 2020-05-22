@@ -1,16 +1,16 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 
 import Main from './pages/Main';
 import Query from './pages/Query';
 
 export default function Routes() {
   return(
-    <BrowserRouter>
+    <HashRouter basename="/">
       <Switch>
-        <Route path="/tecno-consulta" exact component={Main}/>
-        <Route path="/tecno-consulta/query" component={Query}/>
+        <Route path="/" exact component={Main}/>
+        <Route path="/query" component={Query}/>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
