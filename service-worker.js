@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/tecno-consulta/precache-manifest.7e5517bb6927b3ea41d2367bdfb0e75f.js"
+  "/tecno-consulta/precache-manifest.d3851c97f7f6d052a7cc533a43023f3b.js"
 );
 
 self.addEventListener('message', (event) => {
