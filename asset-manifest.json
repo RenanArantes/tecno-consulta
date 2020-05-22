@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/tecno-consulta/static/js/main.24a1caf4.chunk.js",
-    "main.js.map": "/tecno-consulta/static/js/main.24a1caf4.chunk.js.map",
+    "main.js": "/tecno-consulta/static/js/main.131680c0.chunk.js",
+    "main.js.map": "/tecno-consulta/static/js/main.131680c0.chunk.js.map",
     "runtime-main.js": "/tecno-consulta/static/js/runtime-main.fadb155b.js",
     "runtime-main.js.map": "/tecno-consulta/static/js/runtime-main.fadb155b.js.map",
     "static/js/2.c666ef76.chunk.js": "/tecno-consulta/static/js/2.c666ef76.chunk.js",
     "static/js/2.c666ef76.chunk.js.map": "/tecno-consulta/static/js/2.c666ef76.chunk.js.map",
     "index.html": "/tecno-consulta/index.html",
-    "precache-manifest.4aaffb9d849e66a768ed03d2ffc08383.js": "/tecno-consulta/precache-manifest.4aaffb9d849e66a768ed03d2ffc08383.js",
+    "precache-manifest.7e5517bb6927b3ea41d2367bdfb0e75f.js": "/tecno-consulta/precache-manifest.7e5517bb6927b3ea41d2367bdfb0e75f.js",
     "service-worker.js": "/tecno-consulta/service-worker.js",
     "static/js/2.c666ef76.chunk.js.LICENSE.txt": "/tecno-consulta/static/js/2.c666ef76.chunk.js.LICENSE.txt",
     "static/media/logo.png": "/tecno-consulta/static/media/logo.68993b76.png"
@@ -15,6 +15,6 @@
   "entrypoints": [
     "static/js/runtime-main.fadb155b.js",
     "static/js/2.c666ef76.chunk.js",
-    "static/js/main.24a1caf4.chunk.js"
+    "static/js/main.131680c0.chunk.js"
   ]
 }
