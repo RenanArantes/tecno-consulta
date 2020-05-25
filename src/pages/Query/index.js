@@ -28,7 +28,12 @@ export default function Query(props) {
             <h1>Empresa: {data.fantasia}</h1>
             <hr/>
             <Field>
-              CNPJ: <Value>{data.cnpj}</Value> Data de abertura: <Value>{data.abertura}</Value>
+              <p style={{float:'left'}}>
+                CNPJ: <Value>{data.cnpj}</Value>
+              </p>
+              <p style={{float:'right'}}>
+                Data de abertura: <Value>{data.abertura}</Value>
+              </p>
             </Field>
             <br/>
             <Field>
@@ -37,7 +42,13 @@ export default function Query(props) {
             {data.efr ? <><br/> <Field>EFR: <Value>{data.efr}</Value></Field> </>: null}
             <br/>
             <Field>
-              Tipo: <Value>{data.tipo}</Value> Porte: <Value>{data.porte}</Value>
+              <p style={{float:'left'}}>
+                Tipo: <Value>{data.tipo}</Value>
+              </p>
+              <p style={{float:'right'}}>
+                Porte: <Value>{data.porte}</Value>
+              </p>
+
             </Field>
             <br/>
             <Field>
@@ -76,7 +87,12 @@ export default function Query(props) {
             </h1>
             <hr/>
             <Field>
-              Logradouro: <Value>{data.logradouro}</Value> Numero: <Value>{data.numero}</Value>
+              <p style={{float:'left'}}>
+                Logradouro: <Value>{data.logradouro}</Value>
+              </p>
+              <p style={{float:'right'}}>
+                Numero: <Value>{data.numero}</Value>
+              </p>
             </Field>
             {data.complemento ?
               <>
@@ -89,51 +105,61 @@ export default function Query(props) {
             }
             <br/>
             <Field>
-              Bairro: <Value>{data.bairro} </Value>
-              CEP: <Value>{data.cep} </Value>
-              UF: <Value>{data.uf} </Value>
+              <p style={{float:'left'}}>
+                Bairro: <Value>{data.bairro} </Value>
+              </p>
+              <p style={{float:'right'}}>
+                CEP: <Value>{data.cep} </Value>
+                UF: <Value>{data.uf} </Value>
+              </p>
             </Field>
+            <br></br>
           </Container>
           { data.telefone && data.email ?
-              <Container>
-                <h1>Contato</h1>
-                <hr/>
-                <Field>
-                  {data.telefone ? <>Telefone: <Value>{data.telefone}</Value> <br/></> : null }
-                </Field>
-                <Field>
-                  {data.email ? <>Email: <Value>{data.email}</Value> <br/></> : null }
-                </Field>
-              </Container>
-              : null
-            }
+            <Container>
+              <h1>Contato</h1>
+              <hr/>
+              <Field>
+                {data.telefone ? <>Telefone: <Value>{data.telefone}</Value> <br/></> : null }
+              </Field>
+              <Field>
+                {data.email ? <>Email: <Value>{data.email}</Value> <br/></> : null }
+              </Field>
+            </Container>
+            : null
+          }
           <Container>
             <h1>Quadro Societário</h1>
             <hr/>
-            <Field>
-            <ol>
-              {data.qsa ? data.qsa.map(element => {
-                return (
-                  <li>
-                    <Value>{element.qual}</Value> - <Value>{element.nome}</Value>
-                    {element.pais_origem ?
-                      <ul className="estrangeiro">
+            {data.qsa.length > 0 ?
+              <>
+                <Field>
+                  <ol>
+                    {data.qsa.map(element => {
+                      return (
                         <li>
-                          Sócio estrangeiro - Local: <Value>{element.pais_origem}</Value>
+                          <Value>{element.qual}</Value> - <Value>{element.nome}</Value>
+                          {element.pais_origem ?
+                            <ul className="estrangeiro">
+                              <li>
+                                Sócio estrangeiro - Local: <Value>{element.pais_origem}</Value>
+                              </li>
+                              {element.qual_rep_legal ?
+                                <li>
+                                  Representante Legal: <Value>{element.nome_rep_legal}</Value> - Posição: <Value>{element.qual_rep_legal}</Value>
+                                </li> : null
+                              }
+                            </ul> : null
+                          }
                         </li>
-                        {element.qual_rep_legal ?
-                          <li>
-                            Representante Legal: <Value>{element.nome_rep_legal}</Value> - Posição: <Value>{element.qual_rep_legal}</Value>
-                          </li> : null
-                        }
-                      </ul> : null
-                    }
-                  </li>
-                )
-              }) : null}
-            </ol>
-            </Field>
-            <br/>
+                      )
+                      })}
+                  </ol>
+                </Field>
+                <br/>
+              </>
+              : null
+            }
             <Field>
               Capital Social: <Value>{formatValue(data.capital_social)}</Value>
             </Field>
@@ -146,24 +172,15 @@ export default function Query(props) {
             </Field>
             <br/>
             <Field>
-              Última atualização: <Value>{data.ultima_atualizacao} </Value>
-              Status: <Value>{data.status}</Value>
+              <p style={{float:'left'}}>
+                Última atualização: <Value>{data.ultima_atualizacao} </Value>
+              </p>
+              <p style={{float:'right'}} >
+                Status: <Value>{data.status}</Value>
+              </p>
             </Field>
+            <br/>
           </Container>
-          {/* <Container>
-            <ul>
-
-
-
-              {data.motivo_situacao ? <li>Motivo{data.motivo_situacao}</li> : null}
-              {data.situacao_especial ?
-                <>
-                  <li>Situacao especial: {data.situacao_especial}</li>
-                  <li>Data da situacao especial: {data.data_situacao_especial}</li>
-                </> : null
-              }
-            </ul>
-          </Container> */}
         </>
       :
         <Container>

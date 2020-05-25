@@ -8,6 +8,10 @@ export const Container = styled.div`
 
   color: white;
 
+  @media print {
+    color: black;
+  }
+
   img {
     max-width: 50px;
     height: auto;
