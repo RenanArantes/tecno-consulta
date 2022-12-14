@@ -1,6 +1,6 @@
 import styled, { keyframes, css } from 'styled-components';
 
-export const Form = styled.form.attrs(props => ({
+export const Form = styled.form.attrs((props) => ({
   finded: props.finded,
 }))`
   margin-top: 30px;
@@ -9,7 +9,7 @@ export const Form = styled.form.attrs(props => ({
 
   input {
     flex: 1;
-    border: 1px solid ${props => (props.finded ? '#ff6b6b' : '#eee')};
+    border: 1px solid ${(props) => (props.finded ? '#ff6b6b' : '#eee')};
     padding: 10px 15px;
     border-radius: 4px;
     font-size: 16px;
@@ -25,9 +25,9 @@ const rotate = keyframes`
   } to {
     transform: rotate(360deg);
   }
-`
+`;
 
-export const SubmitButton = styled.button.attrs(props => ({
+export const SubmitButton = styled.button.attrs((props) => ({
   type: 'submit',
   disabled: props.loading,
 }))`
@@ -46,7 +46,7 @@ export const SubmitButton = styled.button.attrs(props => ({
     opacity: 0.6;
   }
 
-  ${props => props.loading && css`
+  ${(props) => props.loading && css`
     svg {
       animation: ${rotate} 2s linear infinite;
     }

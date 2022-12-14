@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Title = styled.h1`
   text-align: center;
-`
+`;
 
 export const Field = styled.text`
   ol {
@@ -14,6 +14,6 @@ export const Field = styled.text`
   ul {
     margin-left: 35px;
   }
-`
+`;
 
-export const Value = styled.strong``
+export const Value = styled.strong``;

@@ -5,11 +5,11 @@ import Main from './pages/Main';
 import Query from './pages/Query';
 
 export default function Routes() {
-  return(
+  return (
     <BrowserRouter basename="tecno-consulta">
       <Switch>
-        <Route path="/" exact component={Main}/>
-        <Route path="/query" component={Query}/>
+        <Route path="/" exact component={Main} />
+        <Route path="/query" component={Query} />
       </Switch>
     </BrowserRouter>
   );
