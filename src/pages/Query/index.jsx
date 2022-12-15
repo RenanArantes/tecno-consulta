@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import formatValue from '../../utils/formatValue';
 
@@ -7,6 +7,7 @@ import Title from '../../components/Title';
 import Subtitle from '../../components/Subtitle';
 
 import { Field,FieldList, Value, Separator, QueryContainer } from './styles';
+import { CompanyContext } from '../../context/Company';
 
 export default function Query(props) {
   const [data, setData] = useState();

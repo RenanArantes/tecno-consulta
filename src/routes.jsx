@@ -8,7 +8,7 @@ import Query from './pages/Query';
 export default function Routes() {
   return (
     <BrowserRouter basename="tecno-consulta">
-        <Header />
+      <Header />
       <Switch>
         <Route path="/" exact component={Main} />
         <Route path="/query" component={Query} />
