@@ -8,13 +8,10 @@ import Subtitle from '../../components/Subtitle';
 
 import { Field,FieldList, Value, Separator, QueryContainer } from './styles';
 import { CompanyContext } from '../../context/Company';
+import formatDate from '../../utils/formatDate';
 
-export default function Query(props) {
-  const [data, setData] = useState();
-
+export default function Query() {
   const { company } = useContext(CompanyContext)
-
-  console.log(company)
 
   return (
     <QueryContainer>
@@ -218,14 +215,14 @@ export default function Query(props) {
               <Field>
                 <span>
                   Data da situação:
-                  <Value>{company.company_situacao}</Value>
+                  <Value>{company.data_situacao}</Value>
                 </span>
               </Field>
               <Field>
                 <span>
                   Última atualização:
                   <Value>
-                    {company.ultima_atualizacao}
+                    {formatDate(company.ultima_atualizacao)}
                   </Value>
                 </span>
                 <span>
