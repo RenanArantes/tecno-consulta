@@ -12,68 +12,63 @@ import { CompanyContext } from '../../context/Company';
 export default function Query(props) {
   const [data, setData] = useState();
 
-  useEffect(() => {
-    if (props.history.location.data) {
-      localStorage.setItem('dataQuery', JSON.stringify(props.history.location.data));
-      setData(props.history.location.data);
-    } else {
-      setData(JSON.parse(localStorage.getItem('dataQuery')));
-    }
-  }, [props.history.location.data]);
+  const { company } = useContext(CompanyContext)
+
+  console.log(company)
 
   return (
     <QueryContainer>
-      {data
+      {company
         ? (
           <div>
             <Container>
               <Title>
                 Empresa:
-                {data.fantasia ? (
-                  <Value>{data.fantasia}</Value>
+                {company.fantasia ? (
+                  <Value>{company.fantasia}</Value>
                 ) : (
-                  <Value>{data.nome}</Value>
+                  <Value>{company.nome}</Value>
                 )}
               </Title>
               <Separator/>
               <Field>
                 <span>
                   CNPJ:
-                  <Value>{data.cnpj}</Value>
+                  <Value>{company.cnpj}</Value>
                 </span>
                 <span >
                   Data de abertura:
-                  <Value>{data.abertura}</Value>
+                  <Value>{company.abertura}</Value>
                 </span>
               </Field>
               <Field>
                 <span>
                   Nome empresarial:
-                  <Value>{data.nome}</Value>
+                  <Value>{company.nome}</Value>
                 </span>
               </Field>
-              {data.efr && (
+              {company.efr && (
                 <Field>
                   <span>
                     EFR:
-                    <Value>{data.efr}</Value>
+                    <Value>{company.efr}</Value>
                   </span>
                 </Field>
               )}
               <Field>
                 <span>
                   Tipo:
-                  <Value>{data.tipo}</Value>
+                  <Value>{company.tipo}</Value>
                 </span>
                 <span>
                   Porte:
-                  <Value>{data.porte}</Value>
+                  <Value>{company.porte}</Value>
                 </span>
               </Field>           
               <Field>
                 <span>
                   Natureza jurídica:
-                  <Value>{data.natureza_juridica}</Value>
+                  <Value>{company.natureza_juridica}</Value>
                 </span>
               </Field>
             </Container>
@@ -81,7 +76,7 @@ export default function Query(props) {
               <Subtitle>Atividades</Subtitle>
               <Separator />
               <Field>
-                {data.atividade_principal && data.atividade_principal.map((element) => (
+                {company.atividade_principal && company.atividade_principal.map((element) => (
                   <Field>
                     <span>
                       Atividade Principal:
@@ -93,12 +88,12 @@ export default function Query(props) {
                 ))}
               </Field>           
               <Field>
-                {data.atividades_secundarias
+                {company.atividades_secundarias
                   && (
                     <Field>
                       <ul>
                         Atividades Secundárias:
-                        {data.atividades_secundarias.map((element) => (
+                        {company.atividades_secundarias.map((element) => (
                           <li>
                             CNAE:
                             <Value>{element.code}</Value>
@@ -119,19 +114,19 @@ export default function Query(props) {
               <Field>
                 <span>
                   Logradouro:
-                  <Value>{data.logradouro}</Value>
+                  <Value>{company.logradouro}</Value>
                 </span>
                 <span>
                   Numero:
-                  <Value>{data.numero}</Value>
+                  <Value>{company.numero}</Value>
                 </span>
               </Field>
-              {data.complemento
+              {company.complemento
                 && (
                   <Field>
                     <span>
                       Complemento:
-                      <Value>{data.complemento}</Value>
+                      <Value>{company.complemento}</Value>
                     </span>
                   </Field>
                 )}
@@ -139,19 +134,19 @@ export default function Query(props) {
                 <span>
                   Bairro:
                   <Value>
-                    {data.bairro}
+                    {company.bairro}
                   </Value>
                 </span>
                 <span>
                   CEP:
                   <Value>
-                    {data.cep}
+                    {company.cep}
                   </Value>
                 </span>
                 <span>
                   UF:
                   <Value>
-                    {data.uf}
+                    {company.uf}
                   </Value>
                 </span>
               </Field>          
@@ -160,18 +155,18 @@ export default function Query(props) {
               <Subtitle>Contato</Subtitle>
               <Separator />
               <Field>
-                {data.telefone && (
+                {company.telefone && (
                   <span>
                     Telefone:
-                    <Value>{data.telefone}</Value>
+                    <Value>{company.telefone}</Value>
                   </span>
                 )}
               </Field>
               <Field>
-                {data.email && (
+                {company.email && (
                   <span>
                     Email:
-                    <Value>{data.email}</Value>
+                    <Value>{company.email}</Value>
                   </span>
                 )}
               </Field>
@@ -179,10 +174,10 @@ export default function Query(props) {
             <Container>
               <Subtitle>Quadro Societário</Subtitle>
               <Separator />
-              {data.qsa.length > 0
+              {company.qsa.length > 0
                 && (
                   <FieldList>
-                      {data.qsa.map((element) => (
+                      {company.qsa.map((element) => (
                         <li>
                           <Value>{element.qual}</Value>
                           -
@@ -211,31 +206,31 @@ export default function Query(props) {
                 )}
               <Field>
                 Capital Social:
-                <Value>{formatValue(data.capital_social)}</Value>
+                <Value>{formatValue(company.capital_social)}</Value>
               </Field>
             </Container>
             <Container>
               <Subtitle>
                 Situação:
-                <Value>{data.situacao}</Value>
+                <Value>{company.situacao}</Value>
               </Subtitle>
               <Separator />
               <Field>
                 <span>
                   Data da situação:
-                  <Value>{data.data_situacao}</Value>
+                  <Value>{company.company_situacao}</Value>
                 </span>
               </Field>
               <Field>
                 <span>
                   Última atualização:
                   <Value>
-                    {data.ultima_atualizacao}
+                    {company.ultima_atualizacao}
                   </Value>
                 </span>
                 <span>
                   Status:
-                  <Value>{data.status}</Value>
+                  <Value>{company.status}</Value>
                 </span>
               </Field>
               
@@ -244,7 +239,9 @@ export default function Query(props) {
         )
         : (
           <Container>
-            <Title>Vazio</Title>
+            <a href="/">
+              <Title>Volte a página inicial e pesquise um CNPJ</Title>
+            </a>
           </Container>
         )}
     </QueryContainer>

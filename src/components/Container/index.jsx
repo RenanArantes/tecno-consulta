@@ -33,6 +33,20 @@ const Container = styled.div`
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
   }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: black;
+  }
+
+  a:hover {
+    transition: 0.2s;
+
+    color: #808080;
+  }
 `;
 
 export default Container;

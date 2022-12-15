@@ -1,23 +1,23 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import InputMask from 'react-input-mask';
 import { Link } from 'react-router-dom';
 import jsonpAdapter from 'axios-jsonp';
 
 import { FaSearch, FaSpinner } from 'react-icons/fa';
 
-import apiRF from '../../services/apiRF';
-import formatCnpj from '../../utils/formatCnpj';
-
 import Header from '../../components/Header';
 import Container from '../../components/Container';
 import { Form, HomeContainer, SubmitButton } from './styles';
 import Title from '../../components/Title/index';
+import { CompanyContext } from '../../context/Company';
 
 export default function Main({ history }) {
   const [cnpj, setCnpj] = useState('');
   const [newCnpj, setNewCnpj] = useState('');
   const [finded, setFinded] = useState(true);
   const [loading, setLoading] = useState(false);
+
+  const { getCompanyData } = useContext(CompanyContext)
 
   function handleInputChange(e) {
     setNewCnpj(e.target.value);
@@ -29,24 +29,19 @@ export default function Main({ history }) {
     setLoading(true);
     setFinded(false);
 
-    try {
-      if (newCnpj === '') throw 'Voce precisa digitar um CNPJ';
-
-      const response = await apiRF.get(`https://www.receitaws.com.br/v1/cnpj/${formatCnpj(newCnpj)}`, {
-        adapter: jsonpAdapter,
-      });
-
-      setNewCnpj('');
-      setCnpj(response.data);
+    await getCompanyData(newCnpj);
+    
+    setTimeout(function () { 
       setLoading(false);
+      setFinded(true);
+    }, 3000)
 
-      history.push({
-        pathname: '/query',
-        data: response.data,
-      });
-    } catch (error) {
-      setLoading(false);
-    }
+    setNewCnpj('');
+    
+
+    history.push({
+      pathname: '/query'
+    });
   }
 
   return (
