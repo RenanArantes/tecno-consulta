@@ -239,7 +239,7 @@ export default function Query(props) {
         )
         : (
           <Container>
-            <a href="/">
+            <a href="/tecno-consulta/">
               <Title>Volte a página inicial e pesquise um CNPJ</Title>
             </a>
           </Container>
