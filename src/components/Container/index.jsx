@@ -8,6 +8,11 @@ const Container = styled.div`
   padding: 20px 30px;
   margin: 10px auto;
 
+  @media (max-width: 500px) {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
   h1 {
     font-size: 20px;
     display: flex;

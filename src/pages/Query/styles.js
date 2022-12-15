@@ -12,6 +12,14 @@ export const Field = styled.div`
     margin-left: 35px;
     list-style: inside ;
   }
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+
+    span:not(:first-child) {
+      margin-top: 9px;
+    }
+  }
 `
 
 export const Separator = styled.hr`

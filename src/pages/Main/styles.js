@@ -37,6 +37,15 @@ export const Form = styled.form.attrs((props) => ({
       background: #f9f7f7;
     }
   }
+
+  @media (max-width: 385px) {
+    flex-direction: column;
+
+    button {
+      margin: 10px 0;
+      height: 50px;
+    }
+  }
 `;
 
 const rotate = keyframes`
