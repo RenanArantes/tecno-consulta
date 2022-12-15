@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 5px 5px;
-  display: flexbox;
+  margin: 15px 15px 25px 10px;
+  display: flex;
   align-items: center;
   align-self: center;
 
@@ -15,6 +15,13 @@ export const Container = styled.div`
   img {
     max-width: 50px;
     height: auto;
+
+    margin-right: 15px;
+  }
+
+  h1, h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
   }
 `;
 

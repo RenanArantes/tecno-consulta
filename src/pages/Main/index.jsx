@@ -10,7 +10,8 @@ import formatCnpj from '../../utils/formatCnpj';
 
 import Header from '../../components/Header';
 import Container from '../../components/Container';
-import { Content, Form, SubmitButton } from './styles';
+import { Form, HomeContainer, SubmitButton } from './styles';
+import Title from '../../components/Title/index';
 
 export default function Main({ history }) {
   const [cnpj, setCnpj] = useState('');
@@ -49,10 +50,9 @@ export default function Main({ history }) {
   }
 
   return (
-    <>
-      <Header />
+    <HomeContainer>
       <Container>
-        <h1>CNPJ</h1>
+        <Title>CNPJ</Title>
         <Form onSubmit={handleSubmit} finded={finded}>
           <InputMask
             mask="99.999.999/9999-99"
@@ -68,6 +68,6 @@ export default function Main({ history }) {
           </SubmitButton>
         </Form>
       </Container>
-    </>
+    </HomeContainer>
   );
 }

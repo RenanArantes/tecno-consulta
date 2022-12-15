@@ -2,14 +2,14 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
     * {
-        margin: 0;
-        padding: 0px 0px;
-        outline: 0;
-        box-sizing: border-box;
+      margin: 0;
+      padding: 0px 0px;
+      outline: 0;
+      box-sizing: border-box;
     }
 
     html, body, #root {
-        min-height: 100%;
+      min-height: 100%;
     }
 
     body {
@@ -18,17 +18,13 @@ export default createGlobalStyle`
         -webkit-font-smoothing: antialiased important;
     }
 
-    @media print {
+    @media print {       
       body {
         background: #fff;
       }
     }
 
     hr {
-      color: #f00;
-      background: #f00;
-      border-color: #f00;
-
       border: 0;
       height: 1px;
       background-image: -webkit-linear-gradient(left, #f0f0f0, #f00, #f0f0f0);
@@ -44,10 +40,10 @@ export default createGlobalStyle`
       }
     }
 
-    body, input, buttom {
+    body, input, button {
         color: #222;
         font-size: 18px;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Roboto', sans-serif;
     }
 
     button {

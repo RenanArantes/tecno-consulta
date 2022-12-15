@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 import formatValue from '../../utils/formatValue';
 
-import Header from '../../components/Header';
 import Container from '../../components/Container';
+import Title from '../../components/Title';
+import Subtitle from '../../components/Subtitle';
 
-import { Title, Value, Field } from './styles';
+import { Field,FieldList, Value, Separator, QueryContainer } from './styles';
 
 export default function Query(props) {
   const [data, setData] = useState();
@@ -20,276 +21,231 @@ export default function Query(props) {
   }, [props.history.location.data]);
 
   return (
-    <>
-      <Header />
+    <QueryContainer>
       {data
         ? (
-          <>
+          <div>
             <Container>
-              <h1>
+              <Title>
                 Empresa:
-                {data.fantasia}
-              </h1>
-              <hr />
+                {data.fantasia ? (
+                  <Value>{data.fantasia}</Value>
+                ) : (
+                  <Value>{data.nome}</Value>
+                )}
+              </Title>
+              <Separator/>
               <Field>
-                <p style={{ float: 'left' }}>
+                <span>
                   CNPJ:
-                  {' '}
                   <Value>{data.cnpj}</Value>
-                </p>
-                <p style={{ float: 'right' }}>
+                </span>
+                <span >
                   Data de abertura:
-                  {' '}
                   <Value>{data.abertura}</Value>
-                </p>
+                </span>
               </Field>
-              <br />
               <Field>
-                Nome empresarial:
-                {' '}
-                <Value>{data.nome}</Value>
+                <span>
+                  Nome empresarial:
+                  <Value>{data.nome}</Value>
+                </span>
               </Field>
-              {data.efr ? (
-                <>
-                  <br />
-                  {' '}
-                  <Field>
+              {data.efr && (
+                <Field>
+                  <span>
                     EFR:
                     <Value>{data.efr}</Value>
-                  </Field>
-                  {' '}
-                </>
-              ) : null}
-              <br />
+                  </span>
+                </Field>
+              )}
               <Field>
-                <p style={{ float: 'left' }}>
+                <span>
                   Tipo:
-                  {' '}
                   <Value>{data.tipo}</Value>
-                </p>
-                <p style={{ float: 'right' }}>
+                </span>
+                <span>
                   Porte:
-                  {' '}
                   <Value>{data.porte}</Value>
-                </p>
-
-              </Field>
-              <br />
+                </span>
+              </Field>           
               <Field>
-                Natureza jurídica:
-                {' '}
-                <Value>{data.natureza_juridica}</Value>
+                <span>
+                  Natureza jurídica:
+                  <Value>{data.natureza_juridica}</Value>
+                </span>
               </Field>
             </Container>
             <Container>
-              <h1>Atividades</h1>
-              <hr />
+              <Subtitle>Atividades</Subtitle>
+              <Separator />
               <Field>
-                {data.atividade_principal ? data.atividade_principal.map((element) => (
+                {data.atividade_principal && data.atividade_principal.map((element) => (
                   <Field>
-                    Atividade Principal:
-                    {' '}
-                    <Value>{element.code}</Value>
-                    {' '}
-                    -
-                    {' '}
-                    <Value>{element.text}</Value>
+                    <span>
+                      Atividade Principal:
+                      <Value>{element.code}</Value>
+                        -
+                      <Value>{element.text}</Value>
+                    </span>
                   </Field>
-                )) : null}
-              </Field>
-              <br />
+                ))}
+              </Field>           
               <Field>
                 {data.atividades_secundarias
-                  ? (
+                  && (
                     <Field>
-                      {' '}
-                      Atividades Secundárias:
-                      {data.atividades_secundarias.map((element) => (
-                        <li>
-                          CNAE:
-                          {' '}
-                          <Value>{element.code}</Value>
-                          {' '}
-                          -
-                          {' '}
-                          <Value>{element.text}</Value>
-                        </li>
-                      ))}
-                    </Field>
-                  )
-                  : null}
-              </Field>
-            </Container>
-            <Container>
-              <h1>
-                Endereço
-              </h1>
-              <hr />
-              <Field>
-                <p style={{ float: 'left' }}>
-                  Logradouro:
-                  {' '}
-                  <Value>{data.logradouro}</Value>
-                </p>
-                <p style={{ float: 'right' }}>
-                  Numero:
-                  {' '}
-                  <Value>{data.numero}</Value>
-                </p>
-              </Field>
-              {data.complemento
-                ? (
-                  <>
-                    <br />
-                    <Field>
-                      Complemento:
-                      {' '}
-                      <Value>{data.complemento}</Value>
-                    </Field>
-                  </>
-                )
-                : null}
-              <br />
-              <Field>
-                <p style={{ float: 'left' }}>
-                  Bairro:
-                  {' '}
-                  <Value>
-                    {data.bairro}
-                    {' '}
-                  </Value>
-                </p>
-                <p style={{ float: 'right' }}>
-                  CEP:
-                  {' '}
-                  <Value>
-                    {data.cep}
-                    {' '}
-                  </Value>
-                  UF:
-                  {' '}
-                  <Value>
-                    {data.uf}
-                    {' '}
-                  </Value>
-                </p>
-              </Field>
-              <br />
-            </Container>
-            { data.telefone && data.email
-              ? (
-                <Container>
-                  <h1>Contato</h1>
-                  <hr />
-                  <Field>
-                    {data.telefone ? (
-                      <>
-                        Telefone:
-                        <Value>{data.telefone}</Value>
-                        {' '}
-                        <br />
-                      </>
-                    ) : null }
-                  </Field>
-                  <Field>
-                    {data.email ? (
-                      <>
-                        Email:
-                        <Value>{data.email}</Value>
-                        {' '}
-                        <br />
-                      </>
-                    ) : null }
-                  </Field>
-                </Container>
-              )
-              : null}
-            <Container>
-              <h1>Quadro Societário</h1>
-              <hr />
-              {data.qsa.length > 0
-                ? (
-                  <>
-                    <Field>
-                      <ol>
-                        {data.qsa.map((element) => (
+                      <ul>
+                        Atividades Secundárias:
+                        {data.atividades_secundarias.map((element) => (
                           <li>
-                            <Value>{element.qual}</Value>
-                            {' '}
+                            CNAE:
+                            <Value>{element.code}</Value>
                             -
-                            <Value>{element.nome}</Value>
-                            {element.pais_origem
-                              ? (
-                                <ul className="estrangeiro">
-                                  <li>
-                                    Sócio estrangeiro - Local:
-                                    {' '}
-                                    <Value>{element.pais_origem}</Value>
-                                  </li>
-                                  {element.qual_rep_legal
-                                    ? (
-                                      <li>
-                                        Representante Legal:
-                                        {' '}
-                                        <Value>{element.nome_rep_legal}</Value>
-                                        {' '}
-                                        - Posição:
-                                        {' '}
-                                        <Value>{element.qual_rep_legal}</Value>
-                                      </li>
-                                    ) : null}
-                                </ul>
-                              ) : null}
+                            <Value>{element.text}</Value>
                           </li>
                         ))}
-                      </ol>
+                      </ul>
                     </Field>
-                    <br />
-                  </>
-                )
-                : null}
+                  )}
+              </Field>
+            </Container>
+            <Container>
+              <Subtitle>
+                Endereço
+              </Subtitle>
+              <Separator />
+              <Field>
+                <span>
+                  Logradouro:
+                  <Value>{data.logradouro}</Value>
+                </span>
+                <span>
+                  Numero:
+                  <Value>{data.numero}</Value>
+                </span>
+              </Field>
+              {data.complemento
+                && (
+                  <Field>
+                    <span>
+                      Complemento:
+                      <Value>{data.complemento}</Value>
+                    </span>
+                  </Field>
+                )}
+              <Field>
+                <span>
+                  Bairro:
+                  <Value>
+                    {data.bairro}
+                  </Value>
+                </span>
+                <span>
+                  CEP:
+                  <Value>
+                    {data.cep}
+                  </Value>
+                </span>
+                <span>
+                  UF:
+                  <Value>
+                    {data.uf}
+                  </Value>
+                </span>
+              </Field>          
+            </Container>
+            <Container>
+              <Subtitle>Contato</Subtitle>
+              <Separator />
+              <Field>
+                {data.telefone && (
+                  <span>
+                    Telefone:
+                    <Value>{data.telefone}</Value>
+                  </span>
+                )}
+              </Field>
+              <Field>
+                {data.email && (
+                  <span>
+                    Email:
+                    <Value>{data.email}</Value>
+                  </span>
+                )}
+              </Field>
+            </Container>
+            <Container>
+              <Subtitle>Quadro Societário</Subtitle>
+              <Separator />
+              {data.qsa.length > 0
+                && (
+                  <FieldList>
+                      {data.qsa.map((element) => (
+                        <li>
+                          <Value>{element.qual}</Value>
+                          -
+                          <Value>{element.nome}</Value>
+                          {element.pais_origem
+                            && (
+                              <ul>
+                                <li>
+                                  Sócio estrangeiro - Local:
+                                  <Value>{element.pais_origem}</Value>
+                                </li>
+                                {element.qual_rep_legal
+                                  && (
+                                    <li>
+                                      Representante Legal:
+                                      <Value>{element.nome_rep_legal}</Value>
+                                      - Posição:
+                                      <Value>{element.qual_rep_legal}</Value>
+                                    </li>
+                                  )}
+                              </ul>
+                            )}
+                        </li>
+                      ))}
+                  </FieldList>
+                )}
               <Field>
                 Capital Social:
-                {' '}
                 <Value>{formatValue(data.capital_social)}</Value>
               </Field>
             </Container>
             <Container>
-              <h1>
+              <Subtitle>
                 Situação:
                 <Value>{data.situacao}</Value>
-              </h1>
-              <hr />
+              </Subtitle>
+              <Separator />
               <Field>
-                Data da situação:
-                {' '}
-                <Value>{data.data_situacao}</Value>
+                <span>
+                  Data da situação:
+                  <Value>{data.data_situacao}</Value>
+                </span>
               </Field>
-              <br />
               <Field>
-                <p style={{ float: 'left' }}>
+                <span>
                   Última atualização:
-                  {' '}
                   <Value>
                     {data.ultima_atualizacao}
-                    {' '}
                   </Value>
-                </p>
-                <p style={{ float: 'right' }}>
+                </span>
+                <span>
                   Status:
-                  {' '}
                   <Value>{data.status}</Value>
-                </p>
+                </span>
               </Field>
-              <br />
+              
             </Container>
-          </>
+          </div>
         )
         : (
           <Container>
             <Title>Vazio</Title>
           </Container>
         )}
-    </>
+    </QueryContainer>
   );
 }
