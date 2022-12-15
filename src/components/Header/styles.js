@@ -17,3 +17,5 @@ export const Container = styled.div`
     height: auto;
   }
 `;
+
+export default Container;

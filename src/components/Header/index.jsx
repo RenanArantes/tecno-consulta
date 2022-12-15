@@ -16,6 +16,5 @@ export default function Header() {
         </div>
       </Container>
     </Link>
-
   );
 }

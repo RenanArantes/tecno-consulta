@@ -14,7 +14,7 @@ export default createGlobalStyle`
 
     body {
       background: rgb(255,0,0);
-      background: linear-gradient(180deg, rgba(255,0,0,1) 13%, rgba(255,0,0,0.4305214185393258) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,1) 13%, rgba(255,0,0,0.4305214185393258) 100%);
         -webkit-font-smoothing: antialiased important;
     }
 

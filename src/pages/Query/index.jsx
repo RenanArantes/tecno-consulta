@@ -105,16 +105,16 @@ export default function Query(props) {
                       {' '}
                       Atividades Secundárias:
                       {data.atividades_secundarias.map((element) => (
-                      <li>
-                        CNAE:
-                        {' '}
-                        <Value>{element.code}</Value>
-                        {' '}
-                        -
-                        {' '}
-                        <Value>{element.text}</Value>
-                      </li>
-                    ))}
+                        <li>
+                          CNAE:
+                          {' '}
+                          <Value>{element.code}</Value>
+                          {' '}
+                          -
+                          {' '}
+                          <Value>{element.text}</Value>
+                        </li>
+                      ))}
                     </Field>
                   )
                   : null}
@@ -184,7 +184,8 @@ export default function Query(props) {
                   <Field>
                     {data.telefone ? (
                       <>
-                        Telefone:<Value>{data.telefone}</Value>
+                        Telefone:
+                        <Value>{data.telefone}</Value>
                         {' '}
                         <br />
                       </>
@@ -193,7 +194,8 @@ export default function Query(props) {
                   <Field>
                     {data.email ? (
                       <>
-                        Email:<Value>{data.email}</Value>
+                        Email:
+                        <Value>{data.email}</Value>
                         {' '}
                         <br />
                       </>
@@ -211,35 +213,35 @@ export default function Query(props) {
                     <Field>
                       <ol>
                         {data.qsa.map((element) => (
-                <li>
-                          <Value>{element.qual}</Value>
-                          {' '}
-                          -
-                          <Value>{element.nome}</Value>
-                          {element.pais_origem
-                            ? (
-              <ul className="estrangeiro">
-                              <li>
-                                Sócio estrangeiro - Local:
-                                {' '}
-                                <Value>{element.pais_origem}</Value>
-                              </li>
-                              {element.qual_rep_legal
-                                ? (
+                          <li>
+                            <Value>{element.qual}</Value>
+                            {' '}
+                            -
+                            <Value>{element.nome}</Value>
+                            {element.pais_origem
+                              ? (
+                                <ul className="estrangeiro">
                                   <li>
-                                      Representante Legal: 
-{' '}
-                                      <Value>{element.nome_rep_legal}</Value>
-                                      {' '}
-                                      - Posição: 
-{' '}
-                                      <Value>{element.qual_rep_legal}</Value>
-                                    </li>
-                                ) : null}
-                            </ul>
-                            ) : null}
-                        </li>
-              ))}
+                                    Sócio estrangeiro - Local:
+                                    {' '}
+                                    <Value>{element.pais_origem}</Value>
+                                  </li>
+                                  {element.qual_rep_legal
+                                    ? (
+                                      <li>
+                                        Representante Legal:
+                                        {' '}
+                                        <Value>{element.nome_rep_legal}</Value>
+                                        {' '}
+                                        - Posição:
+                                        {' '}
+                                        <Value>{element.qual_rep_legal}</Value>
+                                      </li>
+                                    ) : null}
+                                </ul>
+                              ) : null}
+                          </li>
+                        ))}
                       </ol>
                     </Field>
                     <br />
