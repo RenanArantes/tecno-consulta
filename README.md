@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="https://renanarantes.github.io/tecno-consulta">🌐 Acessar aplicação</a>
+  <a href="https://renanarantes.github.io/tecno-consulta" target="_blank">🌐 Acessar aplicação</a>
 </p>
 
 ---
