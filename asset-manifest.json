@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/tecno-consulta/static/js/main.d57efc6c.js",
+    "main.js": "/tecno-consulta/static/js/main.36a72005.js",
     "static/media/logo.png": "/tecno-consulta/static/media/logo.2c323ad9775bdd6f3657.png",
     "index.html": "/tecno-consulta/index.html",
-    "main.d57efc6c.js.map": "/tecno-consulta/static/js/main.d57efc6c.js.map"
+    "main.36a72005.js.map": "/tecno-consulta/static/js/main.36a72005.js.map"
   },
   "entrypoints": [
-    "static/js/main.d57efc6c.js"
+    "static/js/main.36a72005.js"
   ]
 }
