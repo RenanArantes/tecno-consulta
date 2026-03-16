@@ -16,10 +16,20 @@ export function CompanyContextProvider({ children }) {
     });
 
     setCompany(response.data);
+
+    const entry = {
+      cnpj: formatCnpj(cnpj),
+      nome: response.data.fantasia || response.data.nome,
+      company: response.data,
+    };
+    const stored = JSON.parse(localStorage.getItem('queryHistory') || '[]');
+    const filtered = stored.filter(item => item.cnpj !== entry.cnpj);
+    filtered.unshift(entry);
+    localStorage.setItem('queryHistory', JSON.stringify(filtered.slice(0, 10)));
   }
 
   return (
-    <CompanyContext.Provider value={{ company, getCompanyData }} >
+    <CompanyContext.Provider value={{ company, getCompanyData, setCompany }} >
       {children}
     </CompanyContext.Provider>
   )

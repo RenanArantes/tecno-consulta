@@ -88,3 +88,92 @@ export const SubmitButton = styled.button.attrs((props) => ({
     background: #d4000e;
   }
 `;
+
+export const Separator = styled.hr`
+  border: 0;
+  height: 1px;
+  margin: 10px 0;
+`;
+
+export const HistoryHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5px;
+`;
+
+export const ClearButton = styled.button`
+  background: none;
+  border: 0;
+  color: #aa000b;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin-left: auto;
+  border-radius: 4px;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #f9f7f7;
+  }
+`;
+
+export const HistoryList = styled.ul`
+  list-style: none;
+  margin-top: 15px;
+  padding: 0;
+`;
+
+export const RemoveItemButton = styled.button`
+  background: none;
+  border: 0;
+  color: #aa000b;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.2s, background 0.2s;
+
+  &:hover {
+    background: #f0e0e0;
+  }
+`;
+
+export const HistoryItem = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #f9f7f7;
+
+    ${RemoveItemButton} {
+      opacity: 1;
+    }
+  }
+
+  strong {
+    color: #aa000b;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  span {
+    flex: 1;
+    color: #555252;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+`;

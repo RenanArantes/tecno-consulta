@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import formatValue from '../../utils/formatValue';
 
@@ -13,10 +14,12 @@ import formatDate from '../../utils/formatDate';
 export default function Query() {
   const { company } = useContext(CompanyContext)
 
+  if (!company) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <QueryContainer>
-      {company
-        ? (
           <div>
             <Container>
               <Title>
@@ -233,14 +236,6 @@ export default function Query() {
               
             </Container>
           </div>
-        )
-        : (
-          <Container>
-            <a href="/tecno-consulta/">
-              <Title>Volte a página inicial e pesquise um CNPJ</Title>
-            </a>
-          </Container>
-        )}
     </QueryContainer>
   );
 }
