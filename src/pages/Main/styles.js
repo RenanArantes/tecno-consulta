@@ -1,21 +1,21 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled, { css, keyframes } from "styled-components";
 
 export const HomeContainer = styled.div`
   div:last-child {
     min-height: 170px;
   }
-`
+`;
 
 export const Form = styled.form.attrs((props) => ({
   finded: props.finded,
 }))`
   margin-top: 30px;
-  display:flex;
+  display: flex;
   flex-direction: row;
 
   input {
     flex: 1;
-    border: 2px solid ${(props) => (props.finded ? '#aa000b' : '#eee')};
+    border: 2px solid ${(props) => (props.finded ? "#aa000b" : "#eee")};
     padding: 10px 15px;
     border-radius: 4px;
 
@@ -58,7 +58,7 @@ const rotate = keyframes`
 `;
 
 export const SubmitButton = styled.button.attrs((props) => ({
-  type: 'submit',
+  type: "submit",
   disabled: props.loading,
 }))`
   background: #aa000b;
@@ -76,11 +76,13 @@ export const SubmitButton = styled.button.attrs((props) => ({
     opacity: 0.6;
   }
 
-  ${(props) => props.loading && css`
-    svg {
-      animation: ${rotate} 2s linear infinite;
-    }
-  `}
+  ${(props) =>
+    props.loading &&
+    css`
+      svg {
+        animation: ${rotate} 2s linear infinite;
+      }
+    `}
 
   &:hover {
     transition: 0.2s;
@@ -108,16 +110,16 @@ export const ClearButton = styled.button`
   border: 0;
   color: #aa000b;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 4px 0px;
   margin-left: auto;
   border-radius: 4px;
   transition: background 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
-
   &:hover {
-    background: #f9f7f7;
+    color: rgb(255, 0, 13);
+    transition: 0.5s;
   }
 `;
 
@@ -139,10 +141,12 @@ export const RemoveItemButton = styled.button`
   justify-content: center;
   flex-shrink: 0;
   opacity: 0;
-  transition: opacity 0.2s, background 0.2s;
-
+  transition:
+    opacity 0.2s,
+    background 0.2s;
   &:hover {
-    background: #f0e0e0;
+    color: rgb(255, 0, 13);
+    transition: 0.5s;
   }
 `;
 

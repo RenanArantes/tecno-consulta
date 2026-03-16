@@ -70,18 +70,12 @@ npm run deploy
 
 ## 🛠 Tecnologias
 
-| Tecnologia | Uso |
-|------------|-----|
-| **React** | Interface e componentes |
-| **React Router** | Navegação entre páginas |
-| **Styled Components** | Estilização |
-| **Axios** | Requisições HTTP (JSONP para API Receita Federal) |
-| **LocalStorage** | Persistência do histórico de consultas |
-| **React Icons** | Ícones da interface |
-| **React Input Mask** | Máscara de entrada para CNPJ |
-
----
-
-## 📄 Licença
-
-Este projeto é de uso privado.
+| Tecnologia            | Uso                                               |
+| --------------------- | ------------------------------------------------- |
+| **React**             | Interface e componentes                           |
+| **React Router**      | Navegação entre páginas                           |
+| **Styled Components** | Estilização                                       |
+| **Axios**             | Requisições HTTP (JSONP para API Receita Federal) |
+| **LocalStorage**      | Persistência do histórico de consultas            |
+| **React Icons**       | Ícones da interface                               |
+| **React Input Mask**  | Máscara de entrada para CNPJ                      |
