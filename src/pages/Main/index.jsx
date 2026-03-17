@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import InputMask from "react-input-mask";
 
-import { FaSearch, FaSpinner, FaTimes } from "react-icons/fa";
+import { FaSearch, FaSpinner, FaSync, FaTimes } from "react-icons/fa";
 
 import Container from "../../components/Container";
 import Title from "../../components/Title/index";
@@ -13,6 +13,7 @@ import {
   HistoryItem,
   HistoryList,
   HomeContainer,
+  RefreshItemButton,
   RemoveItemButton,
   Separator,
   SubmitButton,
@@ -41,16 +42,22 @@ export default function Main({ history }) {
     setLoading(true);
     setFinded(false);
 
-    await getCompanyData(newCnpj);
-
-    setTimeout(function () {
-      setLoading(false);
-      setFinded(true);
-    }, 3000);
-
-    setNewCnpj("");
-
-    history.push({ pathname: "/query" });
+    try {
+      await getCompanyData(newCnpj);
+      setNewCnpj("");
+      history.push({ pathname: "/query" });
+    } catch (error) {
+      if (error?.status === 429) {
+        history.push({ pathname: "/rate-limit" });
+      } else {
+        throw error;
+      }
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+        setFinded(true);
+      }, 3000);
+    }
   }
 
   async function handleHistoryClick(item) {
@@ -59,9 +66,18 @@ export default function Main({ history }) {
       history.push({ pathname: "/query" });
     } else {
       setLoading(true);
-      await getCompanyData(item.cnpj);
-      setLoading(false);
-      history.push({ pathname: "/query" });
+      try {
+        await getCompanyData(item.cnpj);
+        history.push({ pathname: "/query" });
+      } catch (error) {
+        if (error?.status === 429) {
+          history.push({ pathname: "/rate-limit" });
+        } else {
+          throw error;
+        }
+      } finally {
+        setLoading(false);
+      }
     }
   }
 
@@ -78,6 +94,25 @@ export default function Main({ history }) {
     localStorage.setItem("queryHistory", JSON.stringify(filtered));
   }
 
+  async function handleRefreshItem(e, item) {
+    e.stopPropagation();
+    setLoading(true);
+    try {
+      await getCompanyData(item.cnpj);
+      const stored = JSON.parse(localStorage.getItem("queryHistory") || "[]");
+      setQueryHistory(stored);
+      history.push({ pathname: "/query" });
+    } catch (error) {
+      if (error?.status === 429) {
+        history.push({ pathname: "/rate-limit" });
+      } else {
+        throw error;
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <HomeContainer>
       <Container>
@@ -90,7 +125,7 @@ export default function Main({ history }) {
             value={newCnpj}
             onChange={handleInputChange}
           />
-          <SubmitButton loading={loading}>
+          <SubmitButton $loading={loading}>
             {loading ? (
               <FaSpinner color="#fff" size={25} />
             ) : (
@@ -116,7 +151,14 @@ export default function Main({ history }) {
               <React.Fragment key={item.cnpj}>
                 <HistoryItem onClick={() => handleHistoryClick(item)}>
                   <strong>{item.cnpj}</strong>
-                  <span>{item.nome}</span>
+                  <span>{item.company ? item.company.nome : item.nome}</span>
+                  <RefreshItemButton
+                    type="button"
+                    onClick={(e) => handleRefreshItem(e, item)}
+                    title="Atualizar dados desta consulta"
+                  >
+                    <FaSync size={12} />
+                  </RefreshItemButton>
                   <RemoveItemButton
                     type="button"
                     onClick={(e) => handleRemoveItem(e, item.cnpj)}

@@ -4,6 +4,7 @@ import Header from './components/Header';
 
 import Main from './pages/Main';
 import Query from './pages/Query';
+import RateLimit from './pages/RateLimit';
 
 export default function Routes() {
   return (
@@ -12,6 +13,7 @@ export default function Routes() {
       <Switch>
         <Route path="/" exact component={Main} />
         <Route path="/query" component={Query} />
+        <Route path="/rate-limit" component={RateLimit} />
       </Switch>
     </BrowserRouter>
   );

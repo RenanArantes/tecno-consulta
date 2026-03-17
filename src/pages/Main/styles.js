@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 
 export const HomeContainer = styled.div`
-  div:last-child {
+  > div:first-child {
     min-height: 170px;
   }
 `;
@@ -59,7 +59,7 @@ const rotate = keyframes`
 
 export const SubmitButton = styled.button.attrs((props) => ({
   type: "submit",
-  disabled: props.loading,
+  disabled: props.$loading,
 }))`
   background: #aa000b;
   border: 0;
@@ -77,7 +77,7 @@ export const SubmitButton = styled.button.attrs((props) => ({
   }
 
   ${(props) =>
-    props.loading &&
+    props.$loading &&
     css`
       svg {
         animation: ${rotate} 2s linear infinite;
@@ -129,6 +129,27 @@ export const HistoryList = styled.ul`
   padding: 0;
 `;
 
+export const RefreshItemButton = styled.button`
+  background: none;
+  border: 0;
+  color: #aa000b;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0;
+  transition:
+    opacity 0.2s,
+    background 0.2s;
+  &:hover {
+    color: rgb(255, 0, 13);
+    transition: 0.5s;
+  }
+`;
+
 export const RemoveItemButton = styled.button`
   background: none;
   border: 0;
@@ -161,7 +182,7 @@ export const HistoryItem = styled.li`
   &:hover {
     background: #f9f7f7;
 
-    ${RemoveItemButton} {
+    ${RefreshItemButton}, ${RemoveItemButton} {
       opacity: 1;
     }
   }
